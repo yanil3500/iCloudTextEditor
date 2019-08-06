@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		401091F8D9067336955D2F45 /* Pods_iCloudTextEditor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20716C84FE46A097ABF797ED /* Pods_iCloudTextEditor.framework */; };
 		CD993C7522FA2CD000ABB67A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD993C7422FA2CD000ABB67A /* AppDelegate.swift */; };
 		CD993C7722FA2CD000ABB67A /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD993C7622FA2CD000ABB67A /* DocumentBrowserViewController.swift */; };
 		CD993C7922FA2CD000ABB67A /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD993C7822FA2CD000ABB67A /* DocumentViewController.swift */; };
@@ -17,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20716C84FE46A097ABF797ED /* Pods_iCloudTextEditor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iCloudTextEditor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A59EF371646D9E8208C072 /* Pods-iCloudTextEditor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iCloudTextEditor.release.xcconfig"; path = "Target Support Files/Pods-iCloudTextEditor/Pods-iCloudTextEditor.release.xcconfig"; sourceTree = "<group>"; };
+		CC4840A90DBBF4274E5084CB /* Pods-iCloudTextEditor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iCloudTextEditor.debug.xcconfig"; path = "Target Support Files/Pods-iCloudTextEditor/Pods-iCloudTextEditor.debug.xcconfig"; sourceTree = "<group>"; };
 		CD993C7122FA2CD000ABB67A /* iCloudTextEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCloudTextEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD993C7422FA2CD000ABB67A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD993C7622FA2CD000ABB67A /* DocumentBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserViewController.swift; sourceTree = "<group>"; };
@@ -33,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				401091F8D9067336955D2F45 /* Pods_iCloudTextEditor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		369537E27A2D48A9570555BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20716C84FE46A097ABF797ED /* Pods_iCloudTextEditor.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CD993C6822FA2CD000ABB67A = {
 			isa = PBXGroup;
 			children = (
 				CD993C7322FA2CD000ABB67A /* iCloudTextEditor */,
 				CD993C7222FA2CD000ABB67A /* Products */,
+				FB2D44DEB3FD6C454272C254 /* Pods */,
+				369537E27A2D48A9570555BE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +85,16 @@
 			path = iCloudTextEditor;
 			sourceTree = "<group>";
 		};
+		FB2D44DEB3FD6C454272C254 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC4840A90DBBF4274E5084CB /* Pods-iCloudTextEditor.debug.xcconfig */,
+				84A59EF371646D9E8208C072 /* Pods-iCloudTextEditor.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +102,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD993C8722FA2CD100ABB67A /* Build configuration list for PBXNativeTarget "iCloudTextEditor" */;
 			buildPhases = (
+				4EF5E983E7EC6DF45F1A16F1 /* [CP] Check Pods Manifest.lock */,
 				CD993C6D22FA2CD000ABB67A /* Sources */,
 				CD993C6E22FA2CD000ABB67A /* Frameworks */,
 				CD993C6F22FA2CD000ABB67A /* Resources */,
+				D9F3AE52FA504B8CEC3C989F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,6 +162,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4EF5E983E7EC6DF45F1A16F1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iCloudTextEditor-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D9F3AE52FA504B8CEC3C989F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iCloudTextEditor/Pods-iCloudTextEditor-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Sourceful/Sourceful.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sourceful.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iCloudTextEditor/Pods-iCloudTextEditor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CD993C6D22FA2CD000ABB67A /* Sources */ = {
@@ -288,6 +362,7 @@
 		};
 		CD993C8822FA2CD100ABB67A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC4840A90DBBF4274E5084CB /* Pods-iCloudTextEditor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -306,6 +381,7 @@
 		};
 		CD993C8922FA2CD100ABB67A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84A59EF371646D9E8208C072 /* Pods-iCloudTextEditor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -6,19 +6,23 @@
 //  Copyright © 2019 Elyanil Liranzo Castro. All rights reserved.
 //
 
+import Sourceful
 import UIKit
 
 class DocumentViewController: UIViewController {
-    
-    
-    @IBOutlet weak var textView: UITextView!
-    
+    @IBOutlet var textView: SyntaxTextView!
     var document: Document?
+    
+    let lexer: Lexer = SwiftLexer()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // MARK: Sourceful setup 
+        textView.theme = DefaultSourceCodeTheme()
+        textView.delegate = self
         
+        //Buttons to the navigation controller
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissDocumentViewController))
         
@@ -51,5 +55,12 @@ class DocumentViewController: UIViewController {
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         activityVC.popoverPresentationController?.barButtonItem = sender
         present(activityVC, animated: true)
+    }
+}
+
+// MARK: SyntaxTextViewDelegate
+extension DocumentViewController: SyntaxTextViewDelegate {
+    func lexerForSource(_ source: String) -> Lexer {
+        return lexer
     }
 }
