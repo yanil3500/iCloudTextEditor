@@ -11,6 +11,10 @@ import UIKit
 
 class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocumentBrowserViewControllerDelegate {
     
+    
+    //
+    var transitionController: UIDocumentBrowserTransitionController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,7 +76,25 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         
         let navigationVC = UINavigationController(rootViewController: documentViewController)
         
+        // Sets the transition delegate so the navigationVC uses the default transition animation provided by the transition controller
+        navigationVC.transitioningDelegate = self
+        
+        transitionController = transitionController(forDocumentAt: documentURL)
+        
+        transitionController?.targetView = documentViewController.textView
+        
         present(navigationVC, animated: true, completion: nil)
     }
 }
 
+// MARK: UIViewControllerTransitioningDelegate
+extension DocumentBrowserViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return transitionController
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return transitionController
+    }
+}
