@@ -18,12 +18,16 @@ class DocumentViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissDocumentViewController))
         
         // Access the document
         document?.open { success in
             if success {
                 // Display the content of the document, e.g.:
+                // Shows document name at the top of the navigation controller
+                self.title = self.document?.fileURL.deletingPathExtension().lastPathComponent.capitalized
                 self.textView.text = self.document?.text ?? ""
             } else {
                 // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
@@ -40,5 +44,12 @@ class DocumentViewController: UIViewController {
                 self.document?.close(completionHandler: nil)
             }
         }
+    }
+    
+    @objc func shareTapped(sender: UIBarButtonItem) {
+        guard let url = document?.fileURL else { return }
+        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        activityVC.popoverPresentationController?.barButtonItem = sender
+        present(activityVC, animated: true)
     }
 }
