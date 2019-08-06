@@ -20,7 +20,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         allowsPickingMultipleItems = false
         
         // Update the style of the UIDocumentBrowserViewController
-        // browserUserInterfaceStyle = .dark
+         browserUserInterfaceStyle = .dark
         // view.tintColor = .white
         
         // Specify the allowed content types of your application via the Info.plist.
@@ -32,14 +32,16 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     // MARK: UIDocumentBrowserViewControllerDelegate
     
     func documentBrowser(_ controller: UIDocumentBrowserViewController, didRequestDocumentCreationWithHandler importHandler: @escaping (URL?, UIDocumentBrowserViewController.ImportMode) -> Void) {
-        let newDocumentURL: URL? = nil
+        let baseDirectory = URL(fileURLWithPath: NSTemporaryDirectory())
         
-        // Set the URL for the new document here. Optionally, you can present a template chooser before calling the importHandler.
-        // Make sure the importHandler is always called, even if the user cancels the creation request.
-        if newDocumentURL != nil {
-            importHandler(newDocumentURL, .move)
-        } else {
-            importHandler(nil, .none)
+        let fileName = baseDirectory.appendingPathComponent("untitled.txt")
+        
+        let document = Document(fileURL: fileName)
+        
+        document.save(to: fileName, for: .forCreating) { result in
+            document.close { result in
+                importHandler(fileName, .move)
+            }
         }
     }
     
