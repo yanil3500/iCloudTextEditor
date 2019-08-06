@@ -18,6 +18,8 @@ class DocumentViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissDocumentViewController))
+        
         // Access the document
         document?.open { success in
             if success {
@@ -29,7 +31,7 @@ class DocumentViewController: UIViewController {
         }
     }
     
-    @IBAction func dismissDocumentViewController() {
+    @objc func dismissDocumentViewController() {
         dismiss(animated: true) {
             self.document?.close(completionHandler: nil)
         }
