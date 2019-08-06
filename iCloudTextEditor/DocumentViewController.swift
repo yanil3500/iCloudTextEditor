@@ -32,8 +32,13 @@ class DocumentViewController: UIViewController {
     }
     
     @objc func dismissDocumentViewController() {
-        dismiss(animated: true) {
-            self.document?.close(completionHandler: nil)
+        document?.text = textView.text
+        document?.updateChangeCount(.done)
+        
+        dismiss(animated: true) { [weak self] in
+            if let self = self {
+                self.document?.close(completionHandler: nil)
+            }
         }
     }
 }
